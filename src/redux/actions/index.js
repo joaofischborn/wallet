@@ -13,6 +13,10 @@ export const selectCoinsError = (error) => ({
   type: 'SELECT_ERROR',
   error,
 });
+export const valueFromInput = (expenses) => ({
+  type: 'GET_EXPENSES',
+  expenses,
+});
 
 export const getCoinsApiThunk = () => async (dispatch) => {
   try {
