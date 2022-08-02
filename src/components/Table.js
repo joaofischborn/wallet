@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { removeGlobalState } from '../redux/actions';
 
 class Table extends Component {
+  handleDeleteClick = (expense) => {
+    const { clearStore } = this.props;
+    clearStore(expense);
+  }
+
   render() {
     const { expenses } = this.props;
     return (
@@ -35,6 +41,17 @@ class Table extends Component {
 
               </td>
               <td>Real</td>
+              <td>
+                <button
+                  data-testid="delete-btn"
+                  id={ expense.id }
+                  onClick={ () => this.handleDeleteClick(expense) }
+                  type="button"
+                >
+                  Excluir
+
+                </button>
+              </td>
             </tr>
           </tbody>))}
       </table>
@@ -44,9 +61,13 @@ class Table extends Component {
 const mapStateToProps = (state) => ({
   expenses: state.wallet.expenses,
 });
+const mapDispatchToProps = (dispatch) => ({
+  clearStore: (clear) => dispatch(removeGlobalState(clear)),
+});
 
 Table.propTypes = {
   expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
+  clearStore: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(Table);
+export default connect(mapStateToProps, mapDispatchToProps)(Table);

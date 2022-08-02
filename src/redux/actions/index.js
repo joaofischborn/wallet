@@ -17,6 +17,10 @@ export const valueFromInput = (expenses) => ({
   type: 'GET_EXPENSES',
   expenses,
 });
+export const removeGlobalState = (remove) => ({
+  type: 'REMOVE_STATE',
+  remove,
+});
 
 export const getCoinsApiThunk = () => async (dispatch) => {
   try {

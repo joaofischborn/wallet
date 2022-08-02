@@ -15,6 +15,11 @@ const getCoinsFromAPI = (state = INITIAL_STATE, action) => {
       ...state,
       expenses: [...state.expenses, { ...action.expenses }],
     };
+  case 'REMOVE_STATE':
+    return {
+      ...state,
+      expenses: state.expenses.filter((expense) => expense !== action.remove),
+    };
   default:
     return state;
   }
