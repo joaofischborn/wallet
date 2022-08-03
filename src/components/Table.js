@@ -43,6 +43,13 @@ class Table extends Component {
               <td>Real</td>
               <td>
                 <button
+                  data-testid="edit-btn"
+                  type="button"
+                >
+                  Editar
+
+                </button>
+                <button
                   data-testid="delete-btn"
                   id={ expense.id }
                   onClick={ () => this.handleDeleteClick(expense) }
@@ -52,6 +59,7 @@ class Table extends Component {
 
                 </button>
               </td>
+
             </tr>
           </tbody>))}
       </table>
