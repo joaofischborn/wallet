@@ -47,23 +47,13 @@ class WalletForm extends Component {
     const { currencies } = this.props;
     const { value, description, currency, method, tag } = this.state;
     return (
-      <>
-        <form>
-          <label htmlFor="expenses">
-            Despesa
-            <input
-              data-testid="value-input"
-              id="expenses"
-              name="value"
-              value={ value }
-              onChange={ this.handleChange }
-              placeholder="Insira um valor"
-              type="number"
-            />
-          </label>
+      <div className="form-container">
+        <form className="form">
           <label htmlFor="description">
-            Descrição
+            Descrição da despesa:
+            {' '}
             <input
+              type="text"
               data-testid="description-input"
               id="description"
               name="description"
@@ -71,8 +61,54 @@ class WalletForm extends Component {
               onChange={ this.handleChange }
             />
           </label>
+          <label htmlFor="select-category">
+            Categoria da despesa:
+            {' '}
+            <select
+              data-testid="tag-input"
+              id="select-category"
+              name="tag"
+              value={ tag }
+              onChange={ this.handleChange }
+            >
+              <option value="Alimentação">Alimentação</option>
+              <option value="Lazer">Lazer</option>
+              <option value="Trabalho">Trabalho</option>
+              <option value="Transporte">Transporte</option>
+              <option value="Saúde">Saúde</option>
+            </select>
+          </label>
+          <label htmlFor="expenses">
+            Valor:
+            {' '}
+            <input
+              type="number"
+              data-testid="value-input"
+              id="expenses"
+              name="value"
+              value={ value }
+              onChange={ this.handleChange }
+              placeholder="Insira um valor"
+            />
+          </label>
+          <label htmlFor="select-method">
+            Método de pagamento:
+            {' '}
+            <select
+              data-testid="method-input"
+              id="select-method"
+              name="method"
+              value={ method }
+              onChange={ this.handleChange }
+            >
+              <option value="Dinheiro">Dinheiro</option>
+              <option value="Cartão de crédito">Cartão de crédito</option>
+              <option value="Cartão de débito">Cartão de débito</option>
+            </select>
+          </label>
           <label htmlFor="options-coins">
-            Moeda
+            Moeda:
+            {' '}
             <select
               data-testid="currency-input"
               id="options-coins"
@@ -89,39 +125,9 @@ class WalletForm extends Component {
                 </option>))}
             </select>
           </label>
-          <label htmlFor="select-method">
-            Método de pagamento
-            <select
-              data-testid="method-input"
-              id="select-method"
-              name="method"
-              value={ method }
-              onChange={ this.handleChange }
-            >
-              <option value="Dinheiro">Dinheiro</option>
-              <option value="Cartão de crédito">Cartão de crédito</option>
-              <option value="Cartão de débito">Cartão de débito</option>
-            </select>
-          </label>
-          <label htmlFor="select-category">
-            Categoria
-            <select
-              data-testid="tag-input"
-              id="select-category"
-              name="tag"
-              value={ tag }
-              onChange={ this.handleChange }
-            >
-              <option value="Alimentação">Alimentação</option>
-              <option value="Lazer">Lazer</option>
-              <option value="Trabalho">Trabalho</option>
-              <option value="Transporte">Transporte</option>
-              <option value="Saúde">Saúde</option>
-            </select>
-          </label>
+          <button type="button" onClick={ this.handleClick }>Adicionar despesa</button>
         </form>
-        <button type="button" onClick={ this.handleClick }>Adicionar despesa</button>
-      </>
+      </div>
     );
   }
 }
